@@ -1,11 +1,11 @@
-import dash
+# import dash
 import streamlit as st
 import plotly.graph_objs as go
 import plotly.subplots as sp
 import pandas as pd
 import ccxt
 from pycoingecko import CoinGeckoAPI
-import ast
+# import ast
 
 
 # Initialize the CCXT exchange object (use your desired exchange)
@@ -205,7 +205,8 @@ def return_trending_coin_info():
                                                                         'price_change_pct_btc_24h', 'price_change_pct_usd_24h'], columns='index', values='data', aggfunc='first').reset_index()
         trending_coin_info['score'] = trending_coin_info['score'] + 1
 
-        trending_coin_data = trending_coin_data.append(trending_coin_info)
+        # trending_coin_data = trending_coin_data.append(trending_coin_info)
+        trending_coin_data = pd.concat([trending_coin_data, trending_coin_info], ignore_index=True)
 
     trending_coin_data.sort_values('score', inplace=True, ascending=True)
     # trending_coin_data['content'] = trending_coin_data['content'].astype(str)
