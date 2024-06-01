@@ -1,14 +1,22 @@
 FROM python:3.9-slim
 
+# Set the working directory in the container
 WORKDIR /app
- COPY requirements.txt ./requirements.txt
 
- RUN pip3 install -r requirements.txt
+# Copy the requirements file into the container at /app
+COPY requirements.txt /app/requirements.txt
 
- EXPOSE 8501
+# Install required packages
+RUN pip3 install -r requirements.txt
 
- COPY . /app
+# Copy the Python script into the container at /app
+COPY crypto_dashboard.py /app/crypto_dashboard.py
 
- ENTRYPOINT ["streamlit", "run"]
+# Expose port 8501
+EXPOSE 8501
 
- CMD ["app.py"]
+# Set the entrypoint to streamlit and specify the target Python script
+ENTRYPOINT ["streamlit", "run"]
+
+# Specify the target Python script for Streamlit
+CMD ["crypto_dashboard.py"]
