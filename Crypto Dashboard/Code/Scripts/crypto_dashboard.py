@@ -107,7 +107,9 @@ def plot_price_chart(crypto_df, SYMBOL, TIMEFRAME, SMA1, SMA2):
                                 high=crypto_df['high'],
                                 low=crypto_df['low'],
                                 close=crypto_df['close'],
-                                name='Price')
+                                name='Price',
+                                increasing=dict(line=dict(color='green')),
+                                decreasing=dict(line=dict(color='red')))
     fig.append_trace(candlestick, row=1, col=1)
 
     # Add SMAs to the candlestick chart with custom line colors
